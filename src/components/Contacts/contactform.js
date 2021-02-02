@@ -3,37 +3,76 @@ import { Link } from 'gatsby'
 
 const ContactForm = () => {
     return (
-        <div>
-            <form 
-            name="contact" 
-            method="POST" 
-            data-netlify="true"
-            data-netlify-honeypot="bot-field"
-            action="/"
-            netlify
+        <div className="contact">
+            <form
+                name="contact"
+                method="POST"
+                data-netlify="true"
+                data-netlify-honeypot="bot-field"
             >
                 <input type="hidden" name="form-name" value="contact" />
-                <div className="form-group">
-                    <label>お名前<abbr title="required">*</abbr>
-                        <input type="text" className="form-control" id="name" name="name" placeholder="お名前" maxlength="30" minlength="2" required autocomplete="name" />
-                    </label>
+                <input type="hidden" name="bot-field" />
+                <div className="contact__area">
+                    <TextField
+                        id="name"
+                        className="contact__field"
+                        name="name"
+                        label="お名前"
+                        type="text"
+                        variant="outlined"
+                        value={name}
+                        onChange={handleChange}
+                    />
                 </div>
-                <div className="form-group">
-                    <label>メールアドレス<abbr title="required">*</abbr>
-                        <input type="email" className="form-control" id="email" name="email" placeholder="" pattern="^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required autocomplete="email" />
-                    </label>
+                <div className="contact__area">
+                    <TextField
+                        id="email"
+                        className="contact__field"
+                        name="email"
+                        label="メールアドレス"
+                        type="email"
+                        variant="outlined"
+                        value={email}
+                        onChange={handleChange}
+                    />
                 </div>
-                <div className="form-group">
-                    <label>お問い合わせ内容<abbr title="required">*</abbr>
-                        <textarea className="form-control" id="contact" name="content" rows="8" required></textarea>
-                    </label>
+                <div className="contact__area">
+                    <TextField
+                        id="subject"
+                        className="contact__field"
+                        name="subject"
+                        label="件名"
+                        type="text"
+                        variant="outlined"
+                        value={subject}
+                        onChange={handleChange}
+                    />
                 </div>
-                <div className="form-group">
-                <button type="submit">送信</button>
+                <div className="contact__area">
+                    <TextField
+                        id="message"
+                        className="contact__field"
+                        name="message"
+                        label="問い合わせ内容"
+                        multiline
+                        rows={4}
+                        variant="outlined"
+                        value={message}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className="contact__btn">
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        disabled={canSubmit()}
+                    >
+                        送信
+                    </Button>
                 </div>
             </form>
-        </div>
-    );
+        </div>    );
 }
 
 export default ContactForm
