@@ -9,6 +9,7 @@ const ContactForm = () => {
             method="POST" 
             data-netlify="true"
             data-netlify-honeypot="bot-field"
+            action="/"
             >
                 <input type="hidden" name="form-name" value="contact" />
                 <input type="hidden" name="bot-field" />
@@ -28,7 +29,7 @@ const ContactForm = () => {
                     </label>
                 </div>
                 <div className="form-group">
-                <Link to="/thanks"><button type="submit">送信</button></Link>
+                <button type="submit">送信</button>
                 </div>
             </form>
         </div>
