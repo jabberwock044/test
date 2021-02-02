@@ -1,78 +1,76 @@
-import React from 'react'
-import { Link } from 'gatsby'
+import React, { useState } from "react";
+import { navigate } from "gatsby-link";
 
-const ContactForm = () => {
-    return (
-        <div className="contact">
-            <form
-                name="contact"
-                method="POST"
-                data-netlify="true"
-                data-netlify-honeypot="bot-field"
-            >
-                <input type="hidden" name="form-name" value="contact" />
-                <input type="hidden" name="bot-field" />
-                <div className="contact__area">
-                    <TextField
-                        id="name"
-                        className="contact__field"
-                        name="name"
-                        label="お名前"
-                        type="text"
-                        variant="outlined"
-                        value={name}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="contact__area">
-                    <TextField
-                        id="email"
-                        className="contact__field"
-                        name="email"
-                        label="メールアドレス"
-                        type="email"
-                        variant="outlined"
-                        value={email}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="contact__area">
-                    <TextField
-                        id="subject"
-                        className="contact__field"
-                        name="subject"
-                        label="件名"
-                        type="text"
-                        variant="outlined"
-                        value={subject}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="contact__area">
-                    <TextField
-                        id="message"
-                        className="contact__field"
-                        name="message"
-                        label="問い合わせ内容"
-                        multiline
-                        rows={4}
-                        variant="outlined"
-                        value={message}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="contact__btn">
-                    <Button
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        disabled={canSubmit()}
-                    >
-                        送信
-                    </Button>
-                </div>
-            </form>
-        </div>    );
-}
+const encode = (data) => {
+  return Object.keys(data)
+    .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&");
+};
 
-export default ContactForm
+const Form = () => {
+  const [state, setState] = useState({});
+
+  const handleChange = (e) => {
+    setState({ ...state, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({
+        "form-name": form.getAttribute("name"),
+        ...state,
+      }),
+    })
+      .then(() => navigate(form.getAttribute("action")))
+      .catch((error) => alert(error));
+  };
+
+  return (
+    <form
+      name="contact"
+      method="post"
+      action="/"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      onSubmit={handleSubmit}
+    >
+      <input type="hidden" name="form-name" value="contact" />
+      <p hidden>
+        <label>
+          {" "}
+          <input name="bot-field" onChange={handleChange} />
+        </label>
+      </p>
+      <p>
+        <label>
+          Your name:
+          <br />
+          <input type="text" name="name" onChange={handleChange} />
+        </label>
+      </p>
+      <p>
+        <label>
+          Your email:
+          <br />
+          <input type="email" name="email" onChange={handleChange} />
+        </label>
+      </p>
+      <p>
+        <label>
+          Message:
+          <br />
+          <textarea name="message" onChange={handleChange} />
+        </label>
+      </p>
+      <p>
+        <button type="submit">Send</button>
+      </p>
+    </form>
+  );
+};
+
+export default Form;
