@@ -1,40 +1,20 @@
-/*
-import React from 'react';
-import ReactDOM from 'react-dom';
-import CounterContext from '../contexts/context'
-import Counter from '../components/Counters/counter'
+import React, { useState } from "react"
+import { Link } from "gatsby"
+import Layout from "../components/Layouts/layout"
+import SEO from "../components/seo"
 
-class App extends React.Component {
-  constructor(props) {
-    super(props)
+const Page2 = () => {
 
-    this.increment = this.increment.bind(this)
-    this.decrement = this.decrement.bind(this)
-
-    this.state = {
-      count: 0,
-      increment: this.increment,
-      decrement: this.decrement
-    }
-  }
-
-  increment() {
-    this.setState({count: this.state.count + 1})
-  }
-
-  decrement() {
-    this.setState({count: this.state.count - 1})
-  }
-
-  render() {
-    return (
-      <CounterContext.Provider value={this.state} >
-        <Counter />
-      </CounterContext.Provider>
-    )
-  }
+  return (
+    <Layout>
+      <SEO title="Home" />
+      <h1>Hi people</h1>
+      <p>Welcome to page2.</p>
+      <p>Now go build something great.</p>
+      <Link to="/">home</Link> <br />
+    </Layout>
+  );
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+export default Page2
 
-*/
