@@ -10,10 +10,9 @@ const ContactForm = () => {
             data-netlify="true"
             data-netlify-honeypot="bot-field"
             action="/"
+            netlify
             >
-            <input type="hidden" name="form-name" value="contact" />  
                 <input type="hidden" name="form-name" value="contact" />
-                <input type="hidden" name="bot-field" />
                 <div className="form-group">
                     <label>お名前<abbr title="required">*</abbr>
                         <input type="text" className="form-control" id="name" name="name" placeholder="お名前" maxlength="30" minlength="2" required autocomplete="name" />
