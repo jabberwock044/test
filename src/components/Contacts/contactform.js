@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { navigate } from "gatsby-link";
+import DateContext from "../../contexts/DateContext";
+import moment from 'moment'
 
 const encode = (data) => {
   return Object.keys(data)
@@ -8,6 +10,7 @@ const encode = (data) => {
 };
 
 const Form = () => {
+  const { day }= useContext(DateContext);
   const [state, setState] = useState({});
 
   const handleChange = (e) => {
@@ -64,6 +67,13 @@ const Form = () => {
           Message:
           <br />
           <textarea name="message" onChange={handleChange} />
+        </label>
+      </p>
+      <p>
+        <label>
+          Date:
+          <br />
+          <input name="date" value={moment(day).format("YYYY-MM-DD")} />
         </label>
       </p>
       <p>

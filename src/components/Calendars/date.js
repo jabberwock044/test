@@ -1,26 +1,22 @@
-import React, { useState }  from 'react';
+import React, { useContext, useState }  from 'react';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import moment from 'moment';
+import DateContext from '../../contexts/DateContext';
 
 
 
-const Sample = ({ ppppp }) => {
+const Sample = () => {
 
   const [focused, setFocused] = useState(false);
-  const [date, setDate] = useState(moment);
-  console.log("aaaaaaaaaaaaa")
-  console.log(ppppp.day)
-
+  const { day, change } = useContext(DateContext);
 
   return (    
     <>
-        <p>{ppppp.count}</p>
-        <button onClick={ppppp.increase}>+</button>
         <SingleDatePicker
-        date={ppppp.day}
-        onDateChange={ppppp.daychange}
+        date={day}
+        onDateChange={change}
         focused={focused}
         onFocusChange={focused => setFocused(focused)}
         onClose={focused => setFocused(false)}
