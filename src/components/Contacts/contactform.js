@@ -11,6 +11,9 @@ const encode = (data) => {
 
 const Form = () => {
   const { day }= useContext(DateContext);
+  const date = moment(day).format("YYYY-MM-DD");
+  console.log(date);
+
   const [state, setState] = useState({});
 
   const handleChange = (e) => {
@@ -73,7 +76,7 @@ const Form = () => {
         <label>
           Date:
           <br />
-          <input name="date" value={moment(day).format("YYYY-MM-DD")} />
+          <input name="date" value={date} />
         </label>
       </p>
       <p>
