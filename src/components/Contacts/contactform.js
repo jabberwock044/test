@@ -12,7 +12,12 @@ const encode = (data) => {
 const Form = () => {
   const { day }= useContext(DateContext);
   const date = moment(day).format("YYYY-MM-DD");
+  const mojidate = moment(day).toISOString();
+  const obdate2 = () => moment(day).toString().format("YYYY-MM-DD");
+  const obdate1 = moment(day).toString();
+  const obdate= moment(obdate1).format("YYYY-MM-DD");
   console.log(date);
+  console.log(obdate2);
 
   const [state, setState] = useState({});
 
@@ -77,6 +82,8 @@ const Form = () => {
           Date:
           <br />
           <input name="date" value={date} />
+          <input name="date" value={mojidate} />
+          <input name="date" value={obdate} />
         </label>
       </p>
       <p>
