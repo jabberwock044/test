@@ -6,6 +6,7 @@
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "@babel/runtime": "^7.12.5",
+    "@sendgrid/mail": "^7.4.2",
     "date-fns": "^2.16.1",
     "gatsby": "^2.31.1",
     "gatsby-image": "^2.10.0",
@@ -16,6 +17,7 @@
     "gatsby-source-filesystem": "^2.10.0",
     "gatsby-transformer-sharp": "^2.11.0",
     "moment": "^2.29.1",
+    "netlify-lambda": "^2.0.3",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
     "react-calendar": "^3.3.0",
@@ -35,6 +37,8 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
+    "netlify-build": "netlify-lambda build functions",
+    "netlify-dev": "netlify-lambda serve functions",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
