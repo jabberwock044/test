@@ -1,7 +1,8 @@
 const client = require('@sendgrid/mail')
 
 const key = process.env.KEY
-const sendemail = process.env.email
+const sendemail = process.env.sendemail
+const toemail = process.env.toemail
 
 
 exports.handler =  async (event, context, callback) => {
@@ -18,7 +19,7 @@ exports.handler =  async (event, context, callback) => {
           name: '竹本'
       },
       subject: test,
-      to: 'kmuranokamo7@gmail.com',
+      to: toemail,
       html: 'test1',
   };
 
