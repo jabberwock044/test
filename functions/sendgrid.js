@@ -17,8 +17,8 @@ exports.handler =  async (event, context, callback) => {
           email: sendemail,
           name: '竹本'
       },
-      subject: subject,
-      to: email,
+      subject: test,
+      to: 'kmuranokamo7@gmail.com',
       html: 'test1',
   };
 
